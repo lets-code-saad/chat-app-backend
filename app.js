@@ -11,6 +11,7 @@ app.use(express.json())
 app.use(
   cors({
     origin: [
+      "https://chirpchat-beta.vercel.app",
       "http://localhost:3000",
       "http://localhost:3001",
       "http://localhost:8000",
@@ -20,6 +21,10 @@ app.use(
 // DB before any route runs
 connectDB()
 
+app.use("/", () => {
+  console.log("Server is running");
+  
+})
 app.use("/auth",authRoutes)
 app.use("/message",messageRoutes)
 
