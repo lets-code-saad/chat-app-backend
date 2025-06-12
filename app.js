@@ -5,9 +5,6 @@ const authRoutes = require("./routes/authRoutes")
 const messageRoutes = require("./routes/messageRoutes")
 const cors = require("cors")
 
-// parsing
-app.use(express.json())
-
 app.use(
   cors({
     origin: [
@@ -18,11 +15,15 @@ app.use(
     ],
   })
 );
+
+// parsing
+app.use(express.json())
+
 // DB before any route runs
 connectDB()
 
-app.use("/", () => {
-  console.log("Server is running");
+app.use("/", (req,res) => {
+  res.send("Server is walking");
   
 })
 app.use("/auth",authRoutes)
